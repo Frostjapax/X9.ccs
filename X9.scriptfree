@@ -69,8 +69,8 @@ exibir_cabecalho() {
   echo " ██╔╝ ██╗     ██║██╗╚██████╗╚██████╗███████║"
   echo " ╚═╝  ╚═╝     ╚═╝╚═╝ ╚═════╝ ╚═════╝╚══════╝"
   echo -e "${COLOR_SECONDARY} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-  echo -e "${WHITE}  FREE FIRE ULTRA VIP | OPERADOR: 7VN | TEMA: ${TEMA_NOME}${NC}"
-  echo -e "${WHITE}  MODO: CAPA REGEDIT | LATÊNCIA: ${CLICK_MS}${NC}"
+  echo -e "${WHITE}  PRONTO PARA AP?👾 | OPERADOR: 7VN👾 | TEMA: ${TEMA_NOME}${NC}"👾
+  echo -e "${WHITE}  MODO: EMULADOR👾 | LATÊNCIA: ${CLICK_MS}${NC}"👾
   echo -e "${COLOR_SECONDARY} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
   echo ""
 }
@@ -331,16 +331,6 @@ configurar_xy_freefire() {
   if [ -z "$res_w" ] || [ "$res_w" -eq 0 ]; then res_w=1080; fi
   if [ -z "$res_h" ] || [ "$res_h" -eq 0 ]; then res_h=2400; fi
 
-  local dpi_sys=$(obter_dpi_sistema)
-
-  echo -e "\n${WHITE} Resolução: ${COLOR_SECONDARY}${res_w}x${res_h}${WHITE} | DPI Atual: ${COLOR_SECONDARY}${dpi_sys}${NC}\n"
-  echo -e "${WHITE} Escolha o estilo da sua puxada de capa no Free Fire:${NC}"
-  echo -e " [1] Capa Rápido (Armas de Um Tiro / Baueiro - Y Alta)"
-  echo -e " [2] Capa Estável (SMG / AR - Thompson, MP40, AK)"
-  echo -e " [3] Equilibrado (Geral / Campeonato / X1)"
-  echo ""
-  read -p " Escolha o perfil [1-3], 7VN: " perf_ff
-
   local x_val="3.2"
   local y_val="3.7"
   local bias_val="0.28"
@@ -379,7 +369,7 @@ configurar_xy_freefire() {
   if [ $sen_awm -lt 100 ]; then sen_awm=100; fi
   if [ $sen_olhadinha -lt 100 ]; then sen_olhadinha=100; fi
 
-  echo -e "\n${COLOR_SECONDARY} [!] INJETANDO REGEDIT DE EIXOS X E Y PARA FREE FIRE...${NC}"
+  echo -e "\n${COLOR_SECONDARY} [!] INJETANDO XIT DE EIXOS X E Y PARA FREE FIRE...${NC}"
   setprop debug.touch.x_multiplier "$x_val" > /dev/null 2>&1
   setprop debug.touch.y_multiplier "$y_val" > /dev/null 2>&1
   setprop persist.sys.dispatch.y_bias "$bias_val" > /dev/null 2>&1
