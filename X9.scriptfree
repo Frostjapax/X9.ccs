@@ -37,12 +37,12 @@ selecionar_tema() {
   echo -e "\033[1;37m ╭───────────────────────────────────────────────────╮\033[0m"
   echo -e "\033[1;37m │\033[1;37m  SELEÇÃO DE TEMA DO PAINEL | OPERADOR: 7VN        \033[1;37m │\033[0m"
   echo -e "\033[1;37m ├───────────────────────────────────────────────────┤\033[0m"
-  echo -e "\033[1;37m │\033[1;30m  [1] BLACK VIP 🩸 (Preto & Branco - Padrão)       \033[1;37m │\033[0m"
+  echo -e "\033[1;37m │\033[1;30m  [1] BLACK VIP 🖤 (Preto & Branco - Padrão)       \033[1;37m │\033[0m"
   echo -e "\033[1;37m │\033[1;31m  [2] RED VIP 🩸 (Vermelho & Preto)               \033[1;37m │\033[0m"
-  echo -e "\033[1;37m │\033[1;36m  [3] CYBER NEON 🩸 (Ciano & Azul)                 \033[1;37m │\033[0m"
-  echo -e "\033[1;37m │\033[1;35m  [4] PURPLE TOXIC 🩸 (Roxo & Violeta)             \033[1;37m │\033[0m"
-  echo -e "\033[1;37m │\033[1;32m  [5] MATRIX GREEN 🩸 (Verde Hacker)              \033[1;37m │\033[0m"
-  echo -e "\033[1;37m │\033[1;33m  [6] GOLD VIP 🩸 (Dourado & Amarelo)             \033[1;37m │\033[0m"
+  echo -e "\033[1;37m │\033[1;36m  [3] CYBER NEON ⚡ (Ciano & Azul)                 \033[1;37m │\033[0m"
+  echo -e "\033[1;37m │\033[1;35m  [4] PURPLE TOXIC 🔮 (Roxo & Violeta)             \033[1;37m │\033[0m"
+  echo -e "\033[1;37m │\033[1;32m  [5] MATRIX GREEN 🟢 (Verde Hacker)              \033[1;37m │\033[0m"
+  echo -e "\033[1;37m │\033[1;33m  [6] GOLD VIP 👑 (Dourado & Amarelo)             \033[1;37m │\033[0m"
   echo -e "\033[1;37m ╰───────────────────────────────────────────────────╯\033[0m"
   echo ""
   read -p " 🖤 ESCOLHA SEU TEMA, 7VN [1-6]: " op_tema
@@ -69,8 +69,8 @@ exibir_cabecalho() {
   echo " ██╔╝ ██╗     ██║██╗╚██████╗╚██████╗███████║"
   echo " ╚═╝  ╚═╝     ╚═╝╚═╝ ╚═════╝ ╚═════╝╚══════╝"
   echo -e "${COLOR_SECONDARY} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-  echo -e "${WHITE}  PRONTO PARA AP?👾 | OPERADOR: 7VN👾 | TEMA: ${TEMA_NOME}${NC}"👾
-  echo -e "${WHITE}  MODO: EMULADOR👾 | LATÊNCIA: ${CLICK_MS}${NC}"👾
+  echo -e "${WHITE}  FREE FIRE ULTRA VIP | OPERADOR: 7VN | TEMA: ${TEMA_NOME}${NC}"
+  echo -e "${WHITE}  MODO: CAPA REGEDIT | LATÊNCIA: ${CLICK_MS}${NC}"
   echo -e "${COLOR_SECONDARY} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
   echo ""
 }
@@ -331,28 +331,15 @@ configurar_xy_freefire() {
   if [ -z "$res_w" ] || [ "$res_w" -eq 0 ]; then res_w=1080; fi
   if [ -z "$res_h" ] || [ "$res_h" -eq 0 ]; then res_h=2400; fi
 
+  local dpi_sys=$(obter_dpi_sistema)
+
+  # Cálculo direto proporcional de X, Y e Sensibilidade (100 a 200)
   local x_val="3.2"
   local y_val="3.7"
   local bias_val="0.28"
-  local sen_geral=150
 
-  case $perf_ff in
-    1)
-      x_val="3.1"; y_val="4.2"; bias_val="0.35"
-      local factor=$(( (res_w * 10) / dpi_sys ))
-      sen_geral=$(( 155 + (factor % 45) ))
-      ;;
-    2)
-      x_val="3.4"; y_val="3.5"; bias_val="0.22"
-      local factor=$(( (res_h * 10) / dpi_sys ))
-      sen_geral=$(( 130 + (factor % 40) ))
-      ;;
-    3|*)
-      x_val="3.2"; y_val="3.7"; bias_val="0.28"
-      local factor=$(( (res_w + res_h) / (dpi_sys / 10) ))
-      sen_geral=$(( 120 + (factor % 45) ))
-      ;;
-  esac
+  local factor=$(( (res_w + res_h) / (dpi_sys / 10) ))
+  local sen_geral=$(( 120 + (factor % 60) ))
 
   if [ $sen_geral -gt 200 ]; then sen_geral=200; fi
   if [ $sen_geral -lt 100 ]; then sen_geral=100; fi
@@ -369,7 +356,7 @@ configurar_xy_freefire() {
   if [ $sen_awm -lt 100 ]; then sen_awm=100; fi
   if [ $sen_olhadinha -lt 100 ]; then sen_olhadinha=100; fi
 
-  echo -e "\n${COLOR_SECONDARY} [!] INJETANDO XIT DE EIXOS X E Y PARA FREE FIRE...${NC}"
+  echo -e "\n${COLOR_SECONDARY} [!] INJETANDO REGEDIT DE EIXOS X E Y PARA FREE FIRE...${NC}"
   setprop debug.touch.x_multiplier "$x_val" > /dev/null 2>&1
   setprop debug.touch.y_multiplier "$y_val" > /dev/null 2>&1
   setprop persist.sys.dispatch.y_bias "$bias_val" > /dev/null 2>&1
@@ -381,10 +368,10 @@ configurar_xy_freefire() {
 
   echo -e "\n${WHITE} [✔] EIXOS X E Y DO SISTEMA CONFIGURADOS:${NC}"
   echo -e " ${GRAY}• Multiplicador X (Horizontal): ${WHITE}${x_val}${NC}"
-  echo -e " ${GRAY}• Multiplicador Y (Vertical Capa): ${WHITE}${y_val}${NC}"
+  echo -e " ${GRAY}• Multiplicador Y (Vertical): ${WHITE}${y_val}${NC}"
   echo -e " ${GRAY}• Viés de Puxada Y: ${WHITE}${bias_val}${NC}"
 
-  echo -e "\n${COLOR_SECONDARY} 👾 SENSIBILIDADE CALCULADA PARA ${celular_user} (ESCALA 100 A 200):${NC}"
+  echo -e "\n${COLOR_SECONDARY} 🎯 SENSIBILIDADE CALCULADA PARA ${celular_user} (ESCALA 100 A 200):${NC}"
   echo -e " ${WHITE} GERAL      : ${COLOR_SECONDARY}${sen_geral}${NC}"
   echo -e " ${WHITE} RED DOT    : ${COLOR_SECONDARY}${sen_reddot}${NC}"
   echo -e " ${WHITE} MIRA 2X    : ${COLOR_SECONDARY}${sen_2x}${NC}"
@@ -392,7 +379,7 @@ configurar_xy_freefire() {
   echo -e " ${WHITE} AWM        : ${COLOR_SECONDARY}${sen_awm}${NC}"
   echo -e " ${WHITE} OLHADINHA  : ${COLOR_SECONDARY}${sen_olhadinha}${NC}"
 
-  echo -e "\n${COLOR_SECONDARY} [★] SENSIBILIDADE E EIXOS X E Y DO FREE FIRE APLICADOS!${NC}"
+  echo -e "\n${COLOR_SECONDARY} [★] SENSIBILIDADE E EIXOS X E Y APLICADOS COM SUCESSO!${NC}"
   echo ""
   read -p " Pressione [Enter] para voltar ao menu..."
 }
